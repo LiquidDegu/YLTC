@@ -27,10 +27,11 @@ import cv2
 from cv2 import VideoCapture
 from cv2 import imshow
 from cv2 import imwrite
+import time
 
 
-VIDEO_ID = 'HCbLM3iIZfI'
-thumbnail_path = '/Users/fabia/Desktop/Youtube API STREAM/Bild.jpg'
+VIDEO_ID = 'tEls1CMh32E'
+thumbnail_path = '/Users/fabia/Desktop/Youtube API STREAM/Bild.png'
 credentials_path = '/Users/fabia/Desktop/Youtube API STREAM/client_secret.json'
 scopes = ['https://www.googleapis.com/auth/youtube.force-ssl']                      # https://developers.google.com/youtube/v3/guides/auth/installed-apps#identify-access-scopes
 
@@ -43,12 +44,12 @@ api_service_name = 'youtube'
 api_version = 'v3'
 youtube = googleapiclient.discovery.build(api_service_name, api_version, credentials=credentials)
 
-try:                                                                                                                        #Api Upload
-    request = youtube.thumbnails().set(videoId=VIDEO_ID, media_body=MediaFileUpload(thumbnail_path))
-    response = request.execute()
-    print(response)
-except Exception as ex:
-    print(f'error: {ex}')
+#try:                                                                                                                        #Api Upload
+#    request = youtube.thumbnails().set(videoId=VIDEO_ID, media_body=MediaFileUpload(thumbnail_path))
+#    response = request.execute()
+#    print(response)
+#except Exception as ex:
+#    print(f'error: {ex}')
 
 
 
@@ -66,14 +67,12 @@ r, img = cam.read()
 
 
 
-if r:
-
-    imshow("Test", img)
-    imwrite("Test.png", img)
-else:
-    print("No image")
-
-
+#if r:
+#
+#    imshow("Test", img)
+#    imwrite("Test.png", img)
+#else:
+#    print("No image")
 
 
 
@@ -86,5 +85,31 @@ else:
 
 
 
+#-----------------------------------------------------------------------------------------------------------------------------------
+#Together
 
+i=1
+while i == 1:
+
+    r, img = cam.read()                                                                                                         #take Photo
+
+    time.sleep(12)
+
+    if r:
+
+        #imshow("Bild", img)
+        imwrite("Bild.png", img)
+        print("Mache Bild")
+    else:
+        print("No image")
+
+    time.sleep(5)
+
+    try:                                                                                                                        #Api Upload
+        print("initialisiere API call")
+        request = youtube.thumbnails().set(videoId=VIDEO_ID, media_body=MediaFileUpload(thumbnail_path))
+        response = request.execute()
+        print(response)
+    except Exception as ex:
+        print(f'error: {ex}')
 
