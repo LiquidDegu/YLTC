@@ -30,6 +30,12 @@ from cv2 import imwrite
 import time
 
 
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#API startup
+
+
 VIDEO_ID = 'tEls1CMh32E'
 thumbnail_path = '/Users/fabia/Desktop/Youtube API STREAM/Bild.png'
 credentials_path = '/Users/fabia/Desktop/Youtube API STREAM/client_secret.json'
@@ -44,7 +50,7 @@ api_service_name = 'youtube'
 api_version = 'v3'
 youtube = googleapiclient.discovery.build(api_service_name, api_version, credentials=credentials)
 
-#try:                                                                                                                        #Api Upload
+#try:                                                                                                                        #Api Upload for tests
 #    request = youtube.thumbnails().set(videoId=VIDEO_ID, media_body=MediaFileUpload(thumbnail_path))
 #    response = request.execute()
 #    print(response)
@@ -54,7 +60,7 @@ youtube = googleapiclient.discovery.build(api_service_name, api_version, credent
 
 
 #----------------------------------------------------------------------------------------------------------------------
-#Kamera
+#Kamera startup
 
 cam = VideoCapture(1, cv2.CAP_DSHOW)
 
@@ -66,7 +72,7 @@ r, img = cam.read()
 
 
 
-
+#Camera function for tests
 #if r:
 #
 #    imshow("Test", img)
@@ -86,24 +92,23 @@ r, img = cam.read()
 
 
 #-----------------------------------------------------------------------------------------------------------------------------------
-#Together
+#Main camera and API function
 
 i=1
 while i == 1:
 
     r, img = cam.read()                                                                                                         #take Photo
 
-    time.sleep(12)
+    time.sleep(12)                                                                                                              #sleep for x Sec.
 
     if r:
 
-        #imshow("Bild", img)
-        imwrite("Bild.png", img)
-        print("Mache Bild")
+        imwrite("thumbnail.png", img)                                                                                           #save photo
+#        print("taking picture")
     else:
         print("No image")
 
-    time.sleep(5)
+    time.sleep(5)                                                                                                               #sleep for x Sec.
 
     try:                                                                                                                        #Api Upload
         print("initialisiere API call")
