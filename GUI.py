@@ -4,14 +4,25 @@ from tkinter.filedialog import *
 
 
 
+
+
+
 def main1(*args):
     try:
-        1+1
+        print(Ti.get())
+        print(VideoID.get())
+        print(Cred.get())
+        print(":)")
     except ValueError:
         pass
 
 
 
+def stop(*args):
+    try:
+        i = 2
+    except:
+        print("Error in the Stop function")
 
 
 
@@ -23,7 +34,7 @@ root.title("Thumbnail Changer")
 
 
 
-mainframe = ttk.Frame(root, padding="3 3 12 12")
+mainframe = ttk.Frame(root, padding="3 3 15 15")
 mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
@@ -36,7 +47,7 @@ Ti_entry.grid(column=3, row=1, sticky=(W,E))
 
 
 ttk.Button(mainframe, text="Start", command=main1).grid(column=3, row=3, sticky=E)
-ttk.Button(mainframe, text="Stop", command=main1).grid(column=1, row=3, sticky=W)
+ttk.Button(mainframe, text="Stop", command=stop).grid(column=1, row=3, sticky=W)
 
 
 
@@ -58,6 +69,12 @@ ttk.Button(mainframe, text="Browse Files", command=browsefunc).grid(column=2, ro
 
 
 
+
+# Polish (CSS)
+
+for child in mainframe.winfo_children(): 
+    child.grid_configure(padx=5, pady=5)
+VideoID_entry.focus()
 
 
 
