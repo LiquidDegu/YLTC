@@ -43,9 +43,9 @@ def main1(*args):
     try:
 
 
-        VIDEO_ID = 'VideoID'
-        thumbnail_path = '/Users/fabia/Desktop/Youtube API STREAM/Youtube-Livestream/thumbnail.png'
-        credentials_path = '/Users/fabia/Desktop/Youtube API STREAM/client_secret.json'
+        VIDEO_ID = VideoID.get()
+        thumbnail_path = 'thumbnail.png'
+        credentials_path = Cred.get()
         scopes = ['https://www.googleapis.com/auth/youtube.force-ssl']                      # https://developers.google.com/youtube/v3/guides/auth/installed-apps#identify-access-scopes
 
 
@@ -57,18 +57,19 @@ def main1(*args):
         api_version = 'v3'
         youtube = googleapiclient.discovery.build(api_service_name, api_version, credentials=credentials)
 
-#try:                                                                                                                        #Api Upload for tests
-#    request = youtube.thumbnails().set(videoId=VIDEO_ID, media_body=MediaFileUpload(thumbnail_path))
-#    response = request.execute()
-#    print(response)
-#except Exception as ex:
-#    print(f'error: {ex}')
+        #try:                                                                                                                        #Api Upload for tests
+        #    request = youtube.thumbnails().set(videoId=VIDEO_ID, media_body=MediaFileUpload(thumbnail_path))
+        #    response = request.execute()
+        #    print(response)
+        #except Exception as ex:
+        #    print(f'error: {ex}')
 
+    except:
+        print("Error with Api startup")
 
-
-#----------------------------------------------------------------------------------------------------------------------
-#Kamera startup
-
+        #----------------------------------------------------------------------------------------------------------------------
+        #Kamera startup
+    try:
         cam = VideoCapture(1, cv2.CAP_DSHOW)
 
         cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
@@ -77,19 +78,16 @@ def main1(*args):
 
         r, img = cam.read()
 
+    except:
+        print("Error with Camera startup")
 
-
-#Camera function for tests
-#if r:
-#
-#    imshow("Test", img)
-#    imwrite("Test.png", img)
-#else:
-#    print("No image")
-
-
-
-
+        #Camera function for tests
+        #if r:
+        #
+        #    imshow("Test", img)
+        #    imwrite("Test.png", img)
+        #else:
+        #    print("No image")
 
 
 
@@ -98,24 +96,30 @@ def main1(*args):
 
 
 
-#-----------------------------------------------------------------------------------------------------------------------------------
-#Main camera and API function
 
-        time.sleep(20)
+
+
+
+        #-----------------------------------------------------------------------------------------------------------------------------------
+        #Main camera and API function
+
+    
+    try:
 
 
         i=1
         while i == 1:
 
+            #print(int(Ti.get()))
 
             r, img = cam.read()                                                                                                         #take Photo
 
-            time.sleep(12)                                                                                                              #sleep for x Sec.
+            time.sleep(int(Ti.get()))                                                                                                              #sleep for x Sec.
 
             if r:
 
                 imwrite("thumbnail.png", img)                                                                                           #save photo
-#                print("taking picture")
+            #                print("taking picture")
             else:
                 print("No image")
 
@@ -130,7 +134,8 @@ def main1(*args):
                 print(f'error: {ex}')
 
     except:
-        print("Error in main1")
+        print("Error API call")
+    
 
 
 
