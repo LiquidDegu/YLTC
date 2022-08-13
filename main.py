@@ -23,7 +23,8 @@ from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 import googleapiclient.errors
 from googleapiclient.http import MediaFileUpload
-import cv2
+import numpy as np
+from cv2 import cv2
 from cv2 import VideoCapture
 from cv2 import imshow
 from cv2 import imwrite
@@ -33,6 +34,8 @@ from tkinter import ttk
 from tkinter.filedialog import *
 
 
+
+a = np.array(2)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #API startup
@@ -118,7 +121,7 @@ def main1(*args):
 
             if r:
 
-                imwrite("thumbnail.png", img)                                                                                           #save photo
+                cv2.imwrite("thumbnail.png", img)                                                                                           #save photo
             #                print("taking picture")
             else:
                 print("No image")
