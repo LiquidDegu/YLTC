@@ -1,15 +1,15 @@
-#Features
+# Features
 
-##Automaticly update your Youtube thumbnail for your 
+## Automaticly update your Youtube thumbnail for your 
 With this programm you can easily change your thumbnail for your Youtube livestreams.
 It will take the VirualCamera output from OBS and upload a new thumbnail to Youtube Automaticly
 
-##Change update time 
+## Change update time 
 You can change the intervall in wich the Youtube thumbnail will get updated
 [With the Youtube API you have 10000 "Credits" daily one thumbnail change costs 50 "Credits"]
 So depending on how long you want to steam that day you can change the intervall of the thumbnail upadates
 
-###Example
+### Example
 
 |Hours streamed             | Recommendet intervall  |
 |---------------------------|------------------------|
@@ -51,7 +51,7 @@ So depending on how long you want to steam that day you can change the intervall
 
 
 
-WIP
+## WIP
 
     Calculate max stream time with set time intervall
 
