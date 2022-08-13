@@ -60,3 +60,7 @@ Code
 
 
 
+#### Help
+If you want to help me make this project you are more than welcome to do so!
+If you want to sponsor me a coffe to be more efficient I would be very happy [But you really don't have to!]
+
