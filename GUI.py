@@ -41,7 +41,7 @@ root.rowconfigure(0, weight=1)
 
 Ti = StringVar()
 Ti_entry = ttk.Entry(mainframe, width=14, textvariable=Ti)
-Ti_entry.insert(0,"Set time Inervall")
+Ti_entry.insert(0,"Set time interval")
 Ti_entry.grid(column=3, row=1, sticky=(W,E))
 
 
