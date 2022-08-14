@@ -24,7 +24,7 @@ from googleapiclient.discovery import build
 import googleapiclient.errors
 from googleapiclient.http import MediaFileUpload
 import numpy as np
-from cv2 import cv2
+import cv2
 from cv2 import VideoCapture
 from cv2 import imshow
 from cv2 import imwrite
@@ -32,7 +32,7 @@ import time
 from tkinter import *
 from tkinter import ttk
 from tkinter.filedialog import *
-
+from vidgear.gears import CamGear
 
 
 a = np.array(2)
@@ -72,17 +72,19 @@ def main1(*args):
 
         #----------------------------------------------------------------------------------------------------------------------
         #Kamera startup
-    try:
-        cam = VideoCapture(1, cv2.CAP_DSHOW)
+    #try:
+      #  cam = VideoCapture(1, cv2.CAP_DSHOW)                                                       Turned off for now (working on grabbing it directly via YT)
 
-        cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-        cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+      #  cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+      #  cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 
-        r, img = cam.read()
+      #  r, img = cam.read()
+           
+      
 
-    except:
-        print("Error with Camera startup")
+    #except:
+        #print("Error with Camera startup")
 
         #Camera function for tests
         #if r:
@@ -115,16 +117,42 @@ def main1(*args):
 
             #print(int(Ti.get()))
 
-            r, img = cam.read()                                                                                                         #take Photo
+            #r, img = cam.read()   
+            # Turned off for now (implementing getting if from YT directly)                                                                                                      #take Photo
+
 
             time.sleep(int(Ti.get()))                                                                                                              #sleep for x Sec.
 
-            if r:
-
-                cv2.imwrite("thumbnail.png", img)                                                                                           #save photo
-            #                print("taking picture")
+            stream = CamGear(
+                source="https://youtu.be/4KjavYG_AEI", #YT URL
+                stream_mode=True,
+                logging=True 
+                            ).start()
+    
+            time.sleep(1)
+            img = stream.read()
+    
+            if img is None:
+                print("Error with getting img")
             else:
-                print("No image")
+                cv2.imwrite("thumbnail.png", img) 
+                print("imwrite")
+        
+            stream.stop() 
+
+                
+
+
+
+
+
+
+            #if r:
+            #        
+            #cv2.imwrite("thumbnail.png", img)                                                                                           #save photo
+            #                print("taking picture")
+            #else:
+            #    print("No image")
 
             time.sleep(5)                                                                                                               #sleep for x Sec.
 
