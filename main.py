@@ -123,8 +123,10 @@ def main1(*args):
 
             time.sleep(int(Ti.get()))                                                                                                              #sleep for x Sec.
 
+
+
             stream = CamGear(
-                source="https://youtu.be/4KjavYG_AEI", #YT URL
+                source="https://youtu.be/" + VideoID.get(), #YT URL
                 stream_mode=True,
                 logging=True 
                             ).start()
